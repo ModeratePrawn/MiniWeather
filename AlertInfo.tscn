@@ -1,0 +1,189 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=1]
+
+[node name="AlertInfo" type="VBoxContainer"]
+margin_right = 717.0
+margin_bottom = 393.0
+
+[node name="Intro" type="HBoxContainer" parent="."]
+margin_right = 720.0
+margin_bottom = 28.0
+alignment = 1
+
+[node name="IntroLabel" type="Label" parent="Intro"]
+margin_left = 321.0
+margin_right = 394.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Alert #"
+align = 1
+
+[node name="AlertNum" type="Label" parent="Intro"]
+margin_left = 398.0
+margin_right = 398.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Headline" type="HBoxContainer" parent="."]
+margin_top = 32.0
+margin_right = 720.0
+margin_bottom = 91.0
+alignment = 1
+
+[node name="HLabel" type="Label" parent="Headline"]
+margin_right = 720.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 720, 15 )
+custom_fonts/font = ExtResource( 1 )
+text = "Flood Watch issued June 22 at 10:51AM EDT until June 22 at 11:00PM EDT by NWS Baltimore MD/Washington DC"
+align = 1
+autowrap = true
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+margin_top = 95.0
+margin_right = 720.0
+margin_bottom = 99.0
+
+[node name="AlertInfo1" type="HBoxContainer" parent="."]
+margin_top = 103.0
+margin_right = 720.0
+margin_bottom = 131.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AlertInfo1"]
+margin_left = 273.0
+margin_right = 368.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Severity:"
+align = 1
+
+[node name="A1Status" type="Label" parent="AlertInfo1"]
+margin_left = 372.0
+margin_right = 446.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Severe"
+align = 1
+
+[node name="AlertInfo2" type="HBoxContainer" parent="."]
+margin_top = 135.0
+margin_right = 720.0
+margin_bottom = 163.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AlertInfo2"]
+margin_left = 261.0
+margin_right = 367.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Certainty:"
+align = 1
+
+[node name="A2Status" type="Label" parent="AlertInfo2"]
+margin_left = 371.0
+margin_right = 459.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Possible"
+align = 1
+
+[node name="AlertInfo3" type="HBoxContainer" parent="."]
+margin_top = 167.0
+margin_right = 720.0
+margin_bottom = 195.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AlertInfo3"]
+margin_left = 275.0
+margin_right = 368.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Urgency:"
+align = 1
+
+[node name="A3Status" type="Label" parent="AlertInfo3"]
+margin_left = 372.0
+margin_right = 445.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Future"
+align = 1
+
+[node name="AlertInfo4" type="HBoxContainer" parent="."]
+margin_top = 199.0
+margin_right = 720.0
+margin_bottom = 227.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AlertInfo4"]
+margin_left = 257.0
+margin_right = 325.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Event:"
+align = 1
+
+[node name="A4Status" type="Label" parent="AlertInfo4"]
+margin_left = 329.0
+margin_right = 462.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Flood Watch"
+align = 1
+
+[node name="AlertInfo5" type="HBoxContainer" parent="."]
+margin_top = 231.0
+margin_right = 720.0
+margin_bottom = 259.0
+alignment = 1
+
+[node name="Label" type="Label" parent="AlertInfo5"]
+margin_left = 261.0
+margin_right = 370.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Response:"
+align = 1
+
+[node name="A5Status" type="Label" parent="AlertInfo5"]
+margin_left = 374.0
+margin_right = 459.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
+text = "Prepare"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+margin_top = 263.0
+margin_right = 720.0
+margin_bottom = 267.0
+
+[node name="Desc" type="Label" parent="."]
+margin_top = 271.0
+margin_right = 720.0
+margin_bottom = 1043.0
+custom_fonts/font = ExtResource( 1 )
+text = "* WHAT...Flash flooding caused by excessive rainfall continues to be\\npossible.\\n\\n* WHERE...Portions of DC, Maryland, Virginia and West Virginia,\\nincluding the following areas: in DC, District of Columbia. In\\nMaryland, Carroll, Central and Eastern Allegany, Central and\\nSoutheast Howard, Central and Southeast Montgomery, Frederick MD,\\nNorthern Baltimore, Northwest Howard, Northwest Montgomery, Prince\\nGeorges, Southern Baltimore and Washington. In Virginia,\\nArlington/Falls Church/Alexandria, Clarke, Culpeper, Eastern\\nLoudoun, Fairfax, Frederick VA, Greene, Madison, Northern\\nFauquier, Northern Virginia Blue Ridge, Orange, Page, Prince\\nWilliam/Manassas/Manassas Park, Rappahannock, Rockingham,\\nShenandoah, Southern Fauquier, Spotsylvania, Stafford, Warren and\\nWestern Loudoun. In West Virginia, Berkeley, Eastern Mineral,\\nHampshire, Hardy, Jefferson and Morgan.\\n\\n* WHEN...From 3 PM EDT this afternoon through this evening.\\n\\n* IMPACTS...Excessive runoff may result in flooding of rivers,\\ncreeks, streams, and other low-lying and flood-prone locations.\\n\\n* ADDITIONAL DETAILS...\\n- Widespread showers and thunderstorms are expected later this\\nafternoon into the evening. Given a very warm and moist air\\nmass, these will produce some very heavy rainfall at times.\\nRainfall amounts of 1 to 3 inches are possible within the\\nspan of a couple of hours, with locally higher amounts\\npossible.\\n- http://www.weather.gov/safety/flood"
+align = 1
+autowrap = true
+
+[node name="HSeparator4" type="HSeparator" parent="."]
+margin_top = 1047.0
+margin_right = 720.0
+margin_bottom = 1051.0
+
+[node name="Ins" type="Label" parent="."]
+margin_top = 1055.0
+margin_right = 720.0
+margin_bottom = 1083.0
+custom_fonts/font = ExtResource( 1 )
+text = "Instructions Go Here"
+align = 1
+autowrap = true
+
+[node name="HSeparator5" type="HSeparator" parent="."]
+margin_top = 1087.0
+margin_right = 720.0
+margin_bottom = 1091.0
