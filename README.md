@@ -2,7 +2,9 @@
 MiniMAL Weather App
 
 A minimal weather app that uses https://ip-api.com/ for location data and the National Weather Service API for forecast data. 
+
 *Ad Free
+
 *No Trackers
 
 Built in Godot with GDScript
