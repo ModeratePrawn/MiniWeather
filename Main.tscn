@@ -1,0 +1,1194 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=2]
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="NetworkController" type="Node2D" parent="."]
+
+[node name="Location" type="HTTPRequest" parent="NetworkController"]
+
+[node name="Forecast" type="HTTPRequest" parent="NetworkController"]
+
+[node name="WeeklyForecast" type="HTTPRequest" parent="NetworkController"]
+
+[node name="HoulyForecast" type="HTTPRequest" parent="NetworkController"]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+
+[node name="Forecasts" type="MarginContainer" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 60
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Window" type="VBoxContainer" parent="GUI/Forecasts"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 722.0
+margin_bottom = 1088.0
+
+[node name="Header" type="VBoxContainer" parent="GUI/Forecasts/Window"]
+margin_right = 712.0
+margin_bottom = 60.0
+
+[node name="Title" type="Label" parent="GUI/Forecasts/Window/Header"]
+margin_right = 712.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Weather Forecast for"
+align = 1
+
+[node name="Location" type="Label" parent="GUI/Forecasts/Window/Header"]
+margin_top = 32.0
+margin_right = 712.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 2 )
+text = "CITY, State Location"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window"]
+margin_top = 64.0
+margin_right = 712.0
+margin_bottom = 68.0
+
+[node name="NowCast" type="VBoxContainer" parent="GUI/Forecasts/Window"]
+margin_left = 256.0
+margin_top = 72.0
+margin_right = 456.0
+margin_bottom = 196.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Forecasts/Window/NowCast"]
+margin_right = 200.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Currently:"
+align = 1
+
+[node name="NowTemp" type="HBoxContainer" parent="GUI/Forecasts/Window/NowCast"]
+margin_top = 32.0
+margin_right = 200.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/NowCast/NowTemp"]
+margin_left = 77.0
+margin_right = 105.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "80"
+align = 1
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/NowCast/NowTemp"]
+margin_left = 109.0
+margin_right = 122.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+align = 1
+
+[node name="NowWind" type="HBoxContainer" parent="GUI/Forecasts/Window/NowCast"]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="WindSpeed" type="Label" parent="GUI/Forecasts/Window/NowCast/NowWind"]
+margin_left = 49.0
+margin_right = 126.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "10 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/NowCast/NowWind"]
+margin_left = 130.0
+margin_right = 151.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="ShortCast" type="Label" parent="GUI/Forecasts/Window/NowCast"]
+margin_top = 96.0
+margin_right = 200.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 200, 25 )
+custom_fonts/font = ExtResource( 2 )
+text = "A short forecast"
+align = 1
+autowrap = true
+
+[node name="Alert" type="Button" parent="GUI/Forecasts/Window/NowCast"]
+visible = false
+margin_top = 71.0
+margin_right = 101.0
+margin_bottom = 91.0
+text = "Weather Alert"
+
+[node name="HSeparator2" type="HSeparator" parent="GUI/Forecasts/Window"]
+margin_top = 200.0
+margin_right = 712.0
+margin_bottom = 204.0
+
+[node name="HourlyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
+visible = false
+margin_top = 117.0
+margin_right = 712.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 75, 60 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_vertical_enabled = false
+
+[node name="HourlyCast" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll"]
+margin_right = 74.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="T0" type="VBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast"]
+margin_right = 66.0
+margin_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="DateTime" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
+margin_right = 66.0
+margin_bottom = 14.0
+text = "DateTime"
+align = 1
+
+[node name="T0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
+margin_top = 18.0
+margin_right = 66.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp"]
+margin_left = 19.0
+margin_right = 35.0
+margin_bottom = 14.0
+text = "80"
+align = 1
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp"]
+margin_left = 39.0
+margin_right = 46.0
+margin_bottom = 14.0
+text = "F"
+align = 1
+
+[node name="T0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
+margin_top = 36.0
+margin_right = 66.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="WindSpeed" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind"]
+margin_right = 49.0
+margin_bottom = 14.0
+text = "10 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind"]
+margin_left = 53.0
+margin_right = 66.0
+margin_bottom = 14.0
+text = "W"
+
+[node name="VSeparator" type="VSeparator" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast"]
+margin_left = 70.0
+margin_right = 74.0
+margin_bottom = 50.0
+
+[node name="HSeparator3" type="HSeparator" parent="GUI/Forecasts/Window"]
+visible = false
+margin_top = 117.0
+margin_right = 712.0
+margin_bottom = 121.0
+
+[node name="WeeklyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
+margin_top = 208.0
+margin_right = 712.0
+margin_bottom = 1028.0
+rect_min_size = Vector2( 0, 820 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="WeekCast" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll"]
+margin_right = 700.0
+margin_bottom = 3636.0
+alignment = 1
+
+[node name="W0" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_right = 700.0
+margin_bottom = 256.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W1" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 260.0
+margin_right = 700.0
+margin_bottom = 516.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W2" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 520.0
+margin_right = 700.0
+margin_bottom = 776.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W3" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 780.0
+margin_right = 700.0
+margin_bottom = 1036.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W4" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 1040.0
+margin_right = 700.0
+margin_bottom = 1296.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W5" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 1300.0
+margin_right = 700.0
+margin_bottom = 1556.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W6" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 1560.0
+margin_right = 700.0
+margin_bottom = 1816.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W7" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 1820.0
+margin_right = 700.0
+margin_bottom = 2076.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W8" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 2080.0
+margin_right = 700.0
+margin_bottom = 2336.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W9" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 2340.0
+margin_right = 700.0
+margin_bottom = 2596.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W10" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 2600.0
+margin_right = 700.0
+margin_bottom = 2856.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W11" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 2860.0
+margin_right = 700.0
+margin_bottom = 3116.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W12" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 3120.0
+margin_right = 700.0
+margin_bottom = 3376.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="W13" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
+margin_top = 3380.0
+margin_right = 700.0
+margin_bottom = 3636.0
+rect_min_size = Vector2( 700, 0 )
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Wednesday"
+align = 1
+
+[node name="W0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13/W0Temp"]
+margin_left = 328.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "94"
+
+[node name="Unit" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13/W0Temp"]
+margin_left = 359.0
+margin_right = 372.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "F"
+
+[node name="W0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Speed" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13/W0Wind"]
+margin_left = 283.0
+margin_right = 392.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "1 to 5 mph"
+
+[node name="Direction" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13/W0Wind"]
+margin_left = 396.0
+margin_right = 417.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "W"
+
+[node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
+margin_top = 96.0
+margin_right = 700.0
+margin_bottom = 248.0
+custom_fonts/font = ExtResource( 2 )
+text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+align = 1
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
+margin_top = 252.0
+margin_right = 700.0
+margin_bottom = 256.0
+
+[node name="AlertDisplay" type="MarginContainer" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ForecastReturn" type="Button" parent="GUI/AlertDisplay"]
+visible = false
+margin_right = 720.0
+margin_bottom = 1080.0
+
+[connection signal="request_completed" from="NetworkController/Location" to="." method="_on_Location_request_completed"]
+[connection signal="request_completed" from="NetworkController/Forecast" to="." method="_on_Forecast_request_completed"]
+[connection signal="request_completed" from="NetworkController/WeeklyForecast" to="." method="_on_WeeklyForecast_request_completed"]
+[connection signal="request_completed" from="NetworkController/HoulyForecast" to="." method="_on_HoulyForecast_request_completed"]
