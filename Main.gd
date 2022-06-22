@@ -27,6 +27,8 @@ var AlertCount
 func _ready():
 	print("Program Starting")
 	$GUI/AlertDisplay.visible = false
+	$GUI/Forecasts.visible = true
+	$GUI/Forecasts/Window/NowCast/Alert.visible = false
 	findLocation()
 	
 func findLocation():
@@ -117,6 +119,9 @@ func _on_AlertRequest_request_completed(result, response_code, headers, body):
 	AlertHandler()
 
 func AlertHandler():
+	var AlertNumberUpdate
+	var WA = " Weather Alerts"
+	var WAS = " Weather Alert"
 	print("Alerts:")
 	if Alerts == []:
 		print("No Alerts")
@@ -125,9 +130,14 @@ func AlertHandler():
 		$GUI/Forecasts/Window/NowCast/Alert.visible = true
 		print("ALERT!")
 		AlertCount = Alerts.size()
-		#AlertCount = 3 #Testing.
+		#AlertCount = 1 #Testing.
 		print("Alert Count:")
 		print(AlertCount)
+		AlertNumberUpdate = get_tree().get_root().get_node("Main/GUI/AlertDisplay/Body/Header")
+		if AlertCount == 1:
+			AlertNumberUpdate.text = str(AlertCount,WAS)
+		else:
+			AlertNumberUpdate.text = str(AlertCount,WA)
 		alertProcessing()
 
 func alertProcessing():

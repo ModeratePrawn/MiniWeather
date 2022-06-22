@@ -133,7 +133,8 @@ autowrap = true
 visible = false
 margin_top = 128.0
 margin_right = 200.0
-margin_bottom = 148.0
+margin_bottom = 178.0
+rect_min_size = Vector2( 0, 50 )
 text = "Weather Alert"
 
 [node name="HSeparator2" type="HSeparator" parent="GUI/Forecasts/Window"]
@@ -1208,7 +1209,7 @@ margin_bottom = 36.0
 [node name="AlertScroll" type="ScrollContainer" parent="GUI/AlertDisplay/Body"]
 margin_top = 40.0
 margin_right = 722.0
-margin_bottom = 960.0
+margin_bottom = 966.0
 rect_min_size = Vector2( 0, 920 )
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -1221,10 +1222,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ForecastReturn" type="Button" parent="GUI/AlertDisplay/Body"]
-margin_top = 964.0
+margin_top = 970.0
 margin_right = 722.0
-margin_bottom = 998.0
-rect_min_size = Vector2( 0, 20 )
+margin_bottom = 1020.0
+rect_min_size = Vector2( 0, 50 )
 custom_fonts/font = ExtResource( 2 )
 text = "Close"
 
