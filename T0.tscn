@@ -1,0 +1,51 @@
+[gd_scene format=2]
+
+[node name="T0" type="VBoxContainer"]
+margin_right = 66.0
+margin_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="DateTime" type="Label" parent="."]
+margin_right = 66.0
+margin_bottom = 14.0
+text = "DateTime"
+align = 1
+
+[node name="T0Temp" type="HBoxContainer" parent="."]
+margin_top = 18.0
+margin_right = 66.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="Temp" type="Label" parent="T0Temp"]
+margin_left = 19.0
+margin_right = 35.0
+margin_bottom = 14.0
+text = "80"
+align = 1
+
+[node name="Unit" type="Label" parent="T0Temp"]
+margin_left = 39.0
+margin_right = 46.0
+margin_bottom = 14.0
+text = "F"
+align = 1
+
+[node name="T0Wind" type="HBoxContainer" parent="."]
+margin_top = 36.0
+margin_right = 66.0
+margin_bottom = 50.0
+alignment = 1
+
+[node name="WindSpeed" type="Label" parent="T0Wind"]
+margin_right = 49.0
+margin_bottom = 14.0
+text = "10 mph"
+
+[node name="Direction" type="Label" parent="T0Wind"]
+margin_left = 53.0
+margin_right = 66.0
+margin_bottom = 14.0
+text = "W"

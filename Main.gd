@@ -195,14 +195,60 @@ func PrintHourlyResults():
 	$GUI/Forecasts/Window/NowCast/NowWind/Direction.text = String(HourlyForecastResult[0].windDirection)
 	$GUI/Forecasts/Window/NowCast/ShortCast.text = String(HourlyForecastResult[0].shortForecast)
 	#Hourly Forecast for Next 24 Hours
-	$GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/DateTime.text = String(HourlyForecastResult[1].startTime)
-	$GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp/Temp.text = String(HourlyForecastResult[1].temperature)
-	$GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp/Unit.text = String(HourlyForecastResult[1].temperatureUnit)
-	$GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind/WindSpeed.text = String(HourlyForecastResult[1].windSpeed)
-	$GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind/Direction.text = String(HourlyForecastResult[1].windDirection)
+	var Counter = 1
+	var HourlyCount = HourlyForecastResult.size()
+	var scene = ResourceLoader.load("res://T0.tscn")
+	var path = get_tree().get_root().get_node("Main/GUI/Forecasts/Window/HourlyScroll/HourlyCast")
+	var SepScene = ResourceLoader.load("res://VSeparator.tscn")
+	print(path)
+	print(scene)
+	print(HourlyCount)
+	print(Counter)
+	
+	for number in range(23):
+		print("Loop:", Counter)
+		var NewInstance = scene.instance()
+		var vInst = SepScene.instance()
+		NewInstance.name = "T" + String(Counter)
+		path.add_child(NewInstance)
+		print("New Instance Name:")
+		print(NewInstance.name)
+		#Handle Time
+		var DateTime = HourlyForecastResult[Counter].startTime
+		var Date = DateTime.split("T")[0].split("-")
+		var Time = DateTime.split("T")[1].trim_suffix("Z").split(":")
+		var Year = Date[0]
+		var Month = Date[1]
+		var Day = Date[2]
+		var Hour = Time[0]
+		var Min = Time[1]
+		var Sec = Time[2]
+		Hour = int(Hour)
+		
+		#Convert from 24hr to 12hr.
+		if Hour > 12:
+			Hour = Hour - 12
+			NewInstance.get_node("DateTime").text = str(Month, "/", Day, " ", Hour, ":", Min, "PM")
+		elif Hour == 0:
+			Hour = 12
+			NewInstance.get_node("DateTime").text = str(Month, "/", Day, " ", Hour, ":", Min, "AM")
+		elif Hour == 12:
+			NewInstance.get_node("DateTime").text = str(Month, "/", Day, " ", Hour, ":", Min, "PM")
+		else:
+			NewInstance.get_node("DateTime").text = str(Month, "/", Day, " ", Hour, ":", Min, "AM")
+		
+		#Continue
+		NewInstance.get_node("T0Temp/Temp").text = String(HourlyForecastResult[Counter].temperature)
+		NewInstance.get_node("T0Temp/Unit").text = String(HourlyForecastResult[Counter].temperatureUnit)
+		NewInstance.get_node("T0Wind/WindSpeed").text = String(HourlyForecastResult[Counter].windSpeed)
+		NewInstance.get_node("T0Wind/Direction").text = String(HourlyForecastResult[Counter].windDirection)
+		path.add_child(vInst)
+		Counter = Counter + 1
+
 
 func PrintWeeklyResults():
 	$GUI/Forecasts/Window/WeeklyScroll.get_v_scrollbar().modulate = Color(0, 0, 0, 0) #Hide Scroll Bar
+	$GUI/Forecasts/Window/HourlyScroll.get_h_scrollbar().modulate = Color(0, 0, 0, 0)
 	$GUI/AlertDisplay/Body/AlertScroll.get_v_scrollbar().modulate = Color(0, 0, 0, 0) #Hide Scroll Bar
 	$GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/Date.text = String(WeeklyForecastResult[0].name)
 	$GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0/W0Temp/Temp.text = String(WeeklyForecastResult[0].temperature)
