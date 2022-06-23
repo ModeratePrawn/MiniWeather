@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=1]
 
 [node name="T0" type="VBoxContainer"]
 margin_right = 66.0
@@ -8,44 +10,50 @@ size_flags_vertical = 0
 alignment = 1
 
 [node name="DateTime" type="Label" parent="."]
-margin_right = 66.0
-margin_bottom = 14.0
+margin_right = 104.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "DateTime"
 align = 1
 
 [node name="T0Temp" type="HBoxContainer" parent="."]
-margin_top = 18.0
-margin_right = 66.0
-margin_bottom = 32.0
+margin_top = 32.0
+margin_right = 104.0
+margin_bottom = 60.0
 alignment = 1
 
 [node name="Temp" type="Label" parent="T0Temp"]
-margin_left = 19.0
-margin_right = 35.0
-margin_bottom = 14.0
+margin_left = 29.0
+margin_right = 57.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "80"
 align = 1
 
 [node name="Unit" type="Label" parent="T0Temp"]
-margin_left = 39.0
-margin_right = 46.0
-margin_bottom = 14.0
+margin_left = 61.0
+margin_right = 74.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "F"
 align = 1
 
 [node name="T0Wind" type="HBoxContainer" parent="."]
-margin_top = 36.0
-margin_right = 66.0
-margin_bottom = 50.0
+margin_top = 64.0
+margin_right = 104.0
+margin_bottom = 92.0
 alignment = 1
 
 [node name="WindSpeed" type="Label" parent="T0Wind"]
-margin_right = 49.0
-margin_bottom = 14.0
+margin_left = 1.0
+margin_right = 78.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "10 mph"
 
 [node name="Direction" type="Label" parent="T0Wind"]
-margin_left = 53.0
-margin_right = 66.0
-margin_bottom = 14.0
+margin_left = 82.0
+margin_right = 103.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 1 )
 text = "W"
