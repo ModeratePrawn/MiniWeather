@@ -1,11 +1,13 @@
 # MiniWeather
 MiniMAL Weather App
 
-A minimal weather app that uses https://ip-api.com/ for location data and the National Weather Service API for forecast data. 
+A minimal weather app that uses https://ip-api.com/ for location data and the <a href="https://www.weather.gov/documentation/services-web-api" title= "National Weather Service API">National Weather Service API</a>  for forecast data. 
 
 *Ad Free
 
 *No Trackers
+
+*Android APK
 
 Built in Godot with GDScript
 

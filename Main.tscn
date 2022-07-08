@@ -23,6 +23,10 @@ script = ExtResource( 1 )
 [node name="GUI" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
+[node name="Panel" type="Panel" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
 [node name="Forecasts" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +39,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 60.0
 margin_right = 722.0
-margin_bottom = 1088.0
+margin_bottom = 1130.0
 
 [node name="Header" type="VBoxContainer" parent="GUI/Forecasts/Window"]
 margin_right = 712.0
@@ -143,85 +147,24 @@ margin_right = 712.0
 margin_bottom = 204.0
 
 [node name="HourlyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
-visible = false
-margin_top = 117.0
+margin_top = 208.0
 margin_right = 712.0
-margin_bottom = 177.0
-rect_min_size = Vector2( 75, 60 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_bottom = 238.0
+rect_min_size = Vector2( 0, 30 )
 scroll_vertical_enabled = false
 
 [node name="HourlyCast" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll"]
-margin_right = 74.0
-margin_bottom = 50.0
 alignment = 1
-
-[node name="T0" type="VBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast"]
-margin_right = 66.0
-margin_bottom = 50.0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-alignment = 1
-
-[node name="DateTime" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
-margin_right = 66.0
-margin_bottom = 14.0
-text = "DateTime"
-align = 1
-
-[node name="T0Temp" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
-margin_top = 18.0
-margin_right = 66.0
-margin_bottom = 32.0
-alignment = 1
-
-[node name="Temp" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp"]
-margin_left = 19.0
-margin_right = 35.0
-margin_bottom = 14.0
-text = "80"
-align = 1
-
-[node name="Unit" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Temp"]
-margin_left = 39.0
-margin_right = 46.0
-margin_bottom = 14.0
-text = "F"
-align = 1
-
-[node name="T0Wind" type="HBoxContainer" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0"]
-margin_top = 36.0
-margin_right = 66.0
-margin_bottom = 50.0
-alignment = 1
-
-[node name="WindSpeed" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind"]
-margin_right = 49.0
-margin_bottom = 14.0
-text = "10 mph"
-
-[node name="Direction" type="Label" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast/T0/T0Wind"]
-margin_left = 53.0
-margin_right = 66.0
-margin_bottom = 14.0
-text = "W"
-
-[node name="VSeparator" type="VSeparator" parent="GUI/Forecasts/Window/HourlyScroll/HourlyCast"]
-margin_left = 70.0
-margin_right = 74.0
-margin_bottom = 50.0
 
 [node name="HSeparator3" type="HSeparator" parent="GUI/Forecasts/Window"]
-visible = false
-margin_top = 117.0
+margin_top = 242.0
 margin_right = 712.0
-margin_bottom = 121.0
+margin_bottom = 246.0
 
 [node name="WeeklyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
-margin_top = 208.0
+margin_top = 250.0
 margin_right = 712.0
-margin_bottom = 1028.0
+margin_bottom = 1070.0
 rect_min_size = Vector2( 0, 820 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
