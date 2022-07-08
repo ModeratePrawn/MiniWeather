@@ -9,16 +9,25 @@ script = ExtResource( 1 )
 [node name="NetworkController" type="Node2D" parent="."]
 
 [node name="Location" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="Forecast" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="WeeklyForecast" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="HoulyForecast" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="AlertRequest" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="ZoneIDRequest" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
+
+[node name="EPAReq" type="HTTPRequest" parent="NetworkController"]
+use_threads = true
 
 [node name="GUI" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
@@ -30,7 +39,7 @@ anchor_bottom = 1.0
 [node name="Forecasts" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/margin_right = 10
+custom_constants/margin_right = 20
 custom_constants/margin_top = 60
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
@@ -39,7 +48,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 60.0
 margin_right = 722.0
-margin_bottom = 1130.0
+margin_bottom = 1077.0
 
 [node name="Header" type="VBoxContainer" parent="GUI/Forecasts/Window"]
 margin_right = 712.0
@@ -49,7 +58,7 @@ margin_bottom = 60.0
 margin_right = 712.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "Weather Forecast for"
+text = "National Weather Service Forecast"
 align = 1
 
 [node name="Location" type="Label" parent="GUI/Forecasts/Window/Header"]
@@ -57,7 +66,7 @@ margin_top = 32.0
 margin_right = 712.0
 margin_bottom = 60.0
 custom_fonts/font = ExtResource( 2 )
-text = "CITY, State Location"
+text = "Loading Weather Data..."
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window"]
@@ -69,7 +78,7 @@ margin_bottom = 68.0
 margin_left = 256.0
 margin_top = 72.0
 margin_right = 456.0
-margin_bottom = 196.0
+margin_bottom = 227.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 alignment = 1
@@ -88,16 +97,15 @@ margin_bottom = 60.0
 alignment = 1
 
 [node name="Temp" type="Label" parent="GUI/Forecasts/Window/NowCast/NowTemp"]
-margin_left = 77.0
-margin_right = 105.0
+margin_left = 91.0
+margin_right = 91.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "80"
 align = 1
 
 [node name="Unit" type="Label" parent="GUI/Forecasts/Window/NowCast/NowTemp"]
-margin_left = 109.0
-margin_right = 122.0
+margin_left = 95.0
+margin_right = 108.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
 text = "F"
@@ -110,26 +118,24 @@ margin_bottom = 92.0
 alignment = 1
 
 [node name="WindSpeed" type="Label" parent="GUI/Forecasts/Window/NowCast/NowWind"]
-margin_left = 49.0
-margin_right = 126.0
+margin_left = 98.0
+margin_right = 98.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "10 mph"
 
 [node name="Direction" type="Label" parent="GUI/Forecasts/Window/NowCast/NowWind"]
-margin_left = 130.0
-margin_right = 151.0
+margin_left = 102.0
+margin_right = 102.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-text = "W"
 
 [node name="ShortCast" type="Label" parent="GUI/Forecasts/Window/NowCast"]
 margin_top = 96.0
 margin_right = 200.0
-margin_bottom = 124.0
+margin_bottom = 155.0
 rect_min_size = Vector2( 200, 25 )
 custom_fonts/font = ExtResource( 2 )
-text = "A short forecast"
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
@@ -142,14 +148,14 @@ rect_min_size = Vector2( 0, 50 )
 text = "Weather Alert"
 
 [node name="HSeparator2" type="HSeparator" parent="GUI/Forecasts/Window"]
-margin_top = 200.0
+margin_top = 231.0
 margin_right = 712.0
-margin_bottom = 204.0
+margin_bottom = 235.0
 
 [node name="HourlyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
-margin_top = 208.0
+margin_top = 239.0
 margin_right = 712.0
-margin_bottom = 238.0
+margin_bottom = 269.0
 rect_min_size = Vector2( 0, 30 )
 scroll_vertical_enabled = false
 
@@ -157,27 +163,27 @@ scroll_vertical_enabled = false
 alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="GUI/Forecasts/Window"]
-margin_top = 242.0
+margin_top = 273.0
 margin_right = 712.0
-margin_bottom = 246.0
+margin_bottom = 277.0
 
 [node name="WeeklyScroll" type="ScrollContainer" parent="GUI/Forecasts/Window"]
-margin_top = 250.0
+margin_top = 281.0
 margin_right = 712.0
-margin_bottom = 1070.0
-rect_min_size = Vector2( 0, 820 )
+margin_bottom = 971.0
+rect_min_size = Vector2( 0, 690 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="WeekCast" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll"]
 margin_right = 700.0
-margin_bottom = 3636.0
+margin_bottom = 1892.0
 alignment = 1
 
 [node name="W0" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -231,21 +237,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W0"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W1" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 260.0
+margin_top = 136.0
 margin_right = 700.0
-margin_bottom = 516.0
+margin_bottom = 268.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -299,21 +305,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W1"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W2" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 520.0
+margin_top = 272.0
 margin_right = 700.0
-margin_bottom = 776.0
+margin_bottom = 404.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -367,21 +373,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W2"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W3" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 780.0
+margin_top = 408.0
 margin_right = 700.0
-margin_bottom = 1036.0
+margin_bottom = 540.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -435,21 +441,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W3"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W4" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 1040.0
+margin_top = 544.0
 margin_right = 700.0
-margin_bottom = 1296.0
+margin_bottom = 676.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -503,21 +509,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W4"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W5" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 1300.0
+margin_top = 680.0
 margin_right = 700.0
-margin_bottom = 1556.0
+margin_bottom = 812.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -571,21 +577,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W5"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W6" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 1560.0
+margin_top = 816.0
 margin_right = 700.0
-margin_bottom = 1816.0
+margin_bottom = 948.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -639,21 +645,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W6"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W7" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 1820.0
+margin_top = 952.0
 margin_right = 700.0
-margin_bottom = 2076.0
+margin_bottom = 1084.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -707,21 +713,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W7"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W8" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 2080.0
+margin_top = 1088.0
 margin_right = 700.0
-margin_bottom = 2336.0
+margin_bottom = 1220.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -775,21 +781,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W8"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W9" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 2340.0
+margin_top = 1224.0
 margin_right = 700.0
-margin_bottom = 2596.0
+margin_bottom = 1356.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -843,21 +849,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W9"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W10" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 2600.0
+margin_top = 1360.0
 margin_right = 700.0
-margin_bottom = 2856.0
+margin_bottom = 1492.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -911,21 +917,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W10"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W11" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 2860.0
+margin_top = 1496.0
 margin_right = 700.0
-margin_bottom = 3116.0
+margin_bottom = 1628.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -979,21 +985,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W11"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W12" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 3120.0
+margin_top = 1632.0
 margin_right = 700.0
-margin_bottom = 3376.0
+margin_bottom = 1764.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -1047,21 +1053,21 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
 [node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W12"]
-margin_top = 252.0
+margin_top = 128.0
 margin_right = 700.0
-margin_bottom = 256.0
+margin_bottom = 132.0
 
 [node name="W13" type="VBoxContainer" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast"]
-margin_top = 3380.0
+margin_top = 1768.0
 margin_right = 700.0
-margin_bottom = 3636.0
+margin_bottom = 1892.0
 rect_min_size = Vector2( 700, 0 )
 alignment = 1
 
@@ -1115,16 +1121,37 @@ text = "W"
 [node name="Forecast" type="Label" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
 margin_top = 96.0
 margin_right = 700.0
-margin_bottom = 248.0
+margin_bottom = 124.0
 custom_fonts/font = ExtResource( 2 )
-text = "A chance of rain showers between 8am and 2pm, then showers and thunderstorms likely. Mostly sunny. High near 94, with temperatures falling to around 86 in the afternoon. West wind 1 to 5 mph. Chance of precipitation is 60%. New rainfall amounts between a quarter and half of an inch possible."
+text = "Loading... please wait."
 align = 1
 autowrap = true
 
-[node name="HSeparator" type="HSeparator" parent="GUI/Forecasts/Window/WeeklyScroll/WeekCast/W13"]
-margin_top = 252.0
-margin_right = 700.0
-margin_bottom = 256.0
+[node name="HSeparator4" type="HSeparator" parent="GUI/Forecasts/Window"]
+margin_top = 975.0
+margin_right = 712.0
+margin_bottom = 979.0
+
+[node name="Footer" type="HBoxContainer" parent="GUI/Forecasts/Window"]
+margin_top = 983.0
+margin_right = 712.0
+margin_bottom = 1017.0
+rect_min_size = Vector2( 600, 20 )
+alignment = 1
+
+[node name="AirQuality" type="Button" parent="GUI/Forecasts/Window/Footer"]
+margin_left = 241.0
+margin_right = 365.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "Air Quality"
+
+[node name="Settings" type="Button" parent="GUI/Forecasts/Window/Footer"]
+margin_left = 369.0
+margin_right = 471.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
 
 [node name="AlertDisplay" type="MarginContainer" parent="GUI"]
 visible = false
@@ -1172,11 +1199,271 @@ rect_min_size = Vector2( 0, 50 )
 custom_fonts/font = ExtResource( 2 )
 text = "Close"
 
+[node name="ServerFailure" type="MarginContainer" parent="GUI"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 720, 1080 )
+custom_constants/margin_top = 60
+
+[node name="Body" type="VBoxContainer" parent="GUI/ServerFailure"]
+margin_top = 60.0
+margin_right = 720.0
+margin_bottom = 1080.0
+
+[node name="FailMessage" type="Label" parent="GUI/ServerFailure/Body"]
+margin_right = 720.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 2 )
+text = "Server Failure. 
+Please try again in a few minutes."
+align = 1
+autowrap = true
+
+[node name="Response" type="Label" parent="GUI/ServerFailure/Body"]
+margin_top = 35.0
+margin_right = 720.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 2 )
+text = "Response Code"
+align = 1
+
+[node name="CloseApp" type="Button" parent="GUI/ServerFailure/Body"]
+margin_top = 53.0
+margin_right = 720.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 2 )
+text = "OK"
+
+[node name="Settings" type="MarginContainer" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 60
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Body" type="VBoxContainer" parent="GUI/Settings"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 710.0
+margin_bottom = 1070.0
+
+[node name="Header" type="Label" parent="GUI/Settings/Body"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="GUI/Settings/Body"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 36.0
+
+[node name="EPAHead" type="Label" parent="GUI/Settings/Body"]
+margin_top = 40.0
+margin_right = 700.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 2 )
+text = "EPA AirNow API"
+align = 1
+
+[node name="EPAExplain" type="Label" parent="GUI/Settings/Body"]
+margin_top = 72.0
+margin_right = 700.0
+margin_bottom = 193.0
+custom_fonts/font = ExtResource( 2 )
+text = "The Environmental Protection Agency Air Quality Monitoring Program requires an API key to access the data. You can request an API key for free at https://docs.airnowapi.org/account/request/ "
+autowrap = true
+
+[node name="EPAKey" type="HBoxContainer" parent="GUI/Settings/Body"]
+margin_top = 197.0
+margin_right = 700.0
+margin_bottom = 225.0
+alignment = 1
+
+[node name="EPALabel" type="Label" parent="GUI/Settings/Body/EPAKey"]
+margin_left = 140.0
+margin_right = 355.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "EPA AirNow API Key:"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="GUI/Settings/Body/EPAKey"]
+margin_left = 359.0
+margin_right = 559.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 200, 20 )
+custom_fonts/font = ExtResource( 2 )
+align = 1
+placeholder_text = "Enter Key Here"
+
+[node name="HSeparator2" type="HSeparator" parent="GUI/Settings/Body"]
+margin_top = 229.0
+margin_right = 700.0
+margin_bottom = 233.0
+
+[node name="Return" type="Button" parent="GUI/Settings/Body"]
+margin_top = 237.0
+margin_right = 700.0
+margin_bottom = 271.0
+custom_fonts/font = ExtResource( 2 )
+text = "Save Settings"
+
+[node name="AirQuality" type="MarginContainer" parent="GUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 60
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Body" type="VBoxContainer" parent="GUI/AirQuality"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 710.0
+margin_bottom = 1070.0
+
+[node name="EPAHead" type="Label" parent="GUI/AirQuality/Body"]
+margin_right = 700.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Environmental Protection Agency"
+align = 1
+
+[node name="Header" type="Label" parent="GUI/AirQuality/Body"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 2 )
+text = "Current Air Quality Report"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="GUI/AirQuality/Body"]
+margin_top = 64.0
+margin_right = 700.0
+margin_bottom = 68.0
+
+[node name="DateTimeObs" type="HBoxContainer" parent="GUI/AirQuality/Body"]
+margin_top = 72.0
+margin_right = 700.0
+margin_bottom = 100.0
+alignment = 1
+
+[node name="Date" type="Label" parent="GUI/AirQuality/Body/DateTimeObs"]
+margin_left = 286.0
+margin_right = 286.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Time" type="Label" parent="GUI/AirQuality/Body/DateTimeObs"]
+margin_left = 290.0
+margin_right = 290.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Time2" type="Label" parent="GUI/AirQuality/Body/DateTimeObs"]
+margin_left = 294.0
+margin_right = 327.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = ":00"
+
+[node name="Time3" type="Label" parent="GUI/AirQuality/Body/DateTimeObs"]
+margin_left = 331.0
+margin_right = 409.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "AM/PM"
+
+[node name="TimeZone" type="Label" parent="GUI/AirQuality/Body/DateTimeObs"]
+margin_left = 413.0
+margin_right = 413.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+
+[node name="Values" type="VBoxContainer" parent="GUI/AirQuality/Body"]
+margin_top = 104.0
+margin_right = 700.0
+margin_bottom = 164.0
+alignment = 1
+
+[node name="AQIValue" type="HBoxContainer" parent="GUI/AirQuality/Body/Values"]
+margin_right = 700.0
+margin_bottom = 28.0
+alignment = 1
+
+[node name="AQI" type="Label" parent="GUI/AirQuality/Body/Values/AQIValue"]
+margin_left = 235.0
+margin_right = 416.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Air Quality Index:"
+
+[node name="AQI2" type="Label" parent="GUI/AirQuality/Body/Values/AQIValue"]
+margin_left = 420.0
+margin_right = 465.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "NaN"
+
+[node name="CatNumVal" type="HBoxContainer" parent="GUI/AirQuality/Body/Values"]
+margin_top = 32.0
+margin_right = 700.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="CatNumber" type="Label" parent="GUI/AirQuality/Body/Values/CatNumVal"]
+margin_left = 245.0
+margin_right = 340.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Severity:"
+
+[node name="CatNumber2" type="Label" parent="GUI/AirQuality/Body/Values/CatNumVal"]
+margin_left = 344.0
+margin_right = 389.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "NaN"
+
+[node name="Com" type="Label" parent="GUI/AirQuality/Body/Values/CatNumVal"]
+margin_left = 393.0
+margin_right = 403.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "-"
+
+[node name="CatName" type="Label" parent="GUI/AirQuality/Body/Values/CatNumVal"]
+margin_left = 407.0
+margin_right = 455.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 2 )
+text = "Text"
+
+[node name="ReturnAQ" type="Button" parent="GUI/AirQuality/Body"]
+margin_top = 168.0
+margin_right = 700.0
+margin_bottom = 202.0
+custom_fonts/font = ExtResource( 2 )
+text = "Return"
+
 [connection signal="request_completed" from="NetworkController/Location" to="." method="_on_Location_request_completed"]
 [connection signal="request_completed" from="NetworkController/Forecast" to="." method="_on_Forecast_request_completed"]
 [connection signal="request_completed" from="NetworkController/WeeklyForecast" to="." method="_on_WeeklyForecast_request_completed"]
 [connection signal="request_completed" from="NetworkController/HoulyForecast" to="." method="_on_HoulyForecast_request_completed"]
 [connection signal="request_completed" from="NetworkController/AlertRequest" to="." method="_on_AlertRequest_request_completed"]
 [connection signal="request_completed" from="NetworkController/ZoneIDRequest" to="." method="_on_ZoneIDRequest_request_completed"]
+[connection signal="request_completed" from="NetworkController/EPAReq" to="." method="_on_EPAReq_request_completed"]
 [connection signal="pressed" from="GUI/Forecasts/Window/NowCast/Alert" to="." method="_on_Alert_pressed"]
+[connection signal="pressed" from="GUI/Forecasts/Window/Footer/AirQuality" to="." method="_on_AirQuality_pressed"]
+[connection signal="pressed" from="GUI/Forecasts/Window/Footer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="GUI/AlertDisplay/Body/ForecastReturn" to="." method="_on_ForecastReturn_pressed"]
+[connection signal="pressed" from="GUI/ServerFailure/Body/CloseApp" to="." method="_on_CloseApp_pressed"]
+[connection signal="text_changed" from="GUI/Settings/Body/EPAKey/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="pressed" from="GUI/Settings/Body/Return" to="." method="_on_Return_pressed"]
+[connection signal="pressed" from="GUI/AirQuality/Body/ReturnAQ" to="." method="_on_ReturnAQ_pressed"]
